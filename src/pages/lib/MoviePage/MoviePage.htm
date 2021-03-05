@@ -1,0 +1,62 @@
+<v-container class="grey lighten-5 root-movie-page">
+  <v-card
+    width="500"
+  >
+    <v-img
+      v-if="movie.poster_path"
+      height="260"
+      :src="imageUrl + movie.poster_path"
+    ></v-img>
+    <v-img
+      v-else
+      height="260"
+      src="https://via.placeholder.com/440"
+    ></v-img>
+
+    <v-card-title>
+      {{ movie.original_title }}
+      <v-chip
+        v-if="movie.first_air_date"
+        class="ma-2"
+        color="primary"
+      >
+        TV
+      </v-chip>
+    </v-card-title>
+    <v-card-text>
+      <v-rating
+        :value="movie.popularity"
+        color="amber"
+        dense
+        half-increments
+        readonly
+        size="14"
+      ></v-rating>
+      Дата:
+      <span v-if="movie.release_date">
+        {{ moment(movie.release_date).format('DD.MM.YYYY') }}
+      </span>
+      <span v-else>
+        не определена
+      </span>
+    </v-card-text>
+    <v-card-text>ID: {{ movie.id }}</v-card-text>
+    <v-card-text>Satatus: {{ movie.status }}</v-card-text>
+    <v-card-text>Tagline: {{ movie.tagline }}</v-card-text>
+    <v-card-text>
+      {{ movie.overview }}
+    </v-card-text>
+
+    <v-divider class="mx-4"></v-divider>
+
+    <v-card-actions>
+      <v-btn
+        color="deep-purple lighten-2"
+        text
+        @click="goBack"
+      >
+        Go Back
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+</v-container>
